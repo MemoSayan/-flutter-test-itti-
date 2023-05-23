@@ -1,5 +1,7 @@
+import 'dart:ffi';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:rive/rive.dart';
@@ -18,6 +20,14 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  late RiveAnimationController _btnAnimationController;
+
+  @override
+  void initState() {
+    _btnAnimationController = OneShotAnimation("active");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +49,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: const SizedBox(),
           ),
         ),
-        RiveAnimation.asset("assets/RiveAssets/shapes.riv"),
+        const RiveAnimation.asset("assets/RiveAssets/shapes.riv"),
         Positioned.fill(
           child: BackdropFilter(
             filter: ImageFilter.blur(
@@ -49,12 +59,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: const SizedBox(),
           ),
         ),
-        const SafeArea(
+        SafeArea(
             child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 400,
                 child: Column(
                   children: [
@@ -69,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         color: Color.fromARGB(255, 5, 70, 109),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
                     Text("Ingrese un usuario y contraseña para continuar",
                         style: TextStyle(
                           fontSize: 15,
@@ -80,6 +90,41 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ],
                 ),
               ),
+              GestureDetector(
+                onTap: () {
+                  // se muestra animacion
+                  _btnAnimationController.isActive = true;
+                  //  Navigator.pushNamed(context, "/login");
+                },
+                child: SizedBox(
+                    height: 64,
+                    width: double.infinity,
+                    child: Stack(
+                      children: [
+                        RiveAnimation.asset(
+                          "assets/RiveAssets/button.riv",
+                          controllers: [_btnAnimationController],
+                        ),
+                        const Positioned.fill(
+                          top: 8,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                CupertinoIcons.arrow_right_circle_fill,
+                                color: Color.fromARGB(255, 238, 79, 129),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Iniciar Sesión",
+                                style: TextStyle(fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    )),
+              )
             ],
           ),
         ))
