@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:login_itti/screens/onboding/onboding_screen.dart';
 
+/*
+ * @autor: Guillermo De la cruz  
+ * @since: 22/05/2023
+ * 
+ */
+
 void main() {
   runApp(const MyApp());
 }

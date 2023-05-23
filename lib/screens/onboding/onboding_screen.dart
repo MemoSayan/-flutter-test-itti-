@@ -1,10 +1,9 @@
-import 'dart:ffi';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:rive/rive.dart';
+
+import 'components/animated_btn.dart';
 
 /*
  * @autor: Guillermo De la cruz  
@@ -46,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: BackdropFilter(
             filter: ImageFilter.blur(
               sigmaX: 20,
-              sigmaY: 10,
+              sigmaY: 20,
             ),
             child: const SizedBox(),
           ),
@@ -55,8 +54,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Positioned.fill(
           child: BackdropFilter(
             filter: ImageFilter.blur(
-              sigmaX: 20,
-              sigmaY: 20,
+              sigmaX: 25,
+              sigmaY: 25,
             ),
             child: const SizedBox(),
           ),
@@ -66,12 +65,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: Column(
             children: [
+              const Spacer(),
+
+              //header
               const SizedBox(
                 width: 400,
                 child: Column(
                   children: [
                     Text(
-                      "Bienvenido a ITTI",
+                      "Bienvenido",
                       style: TextStyle(
                         fontSize: 50,
                         fontFamily: "Poppins",
@@ -82,9 +84,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Text("Ingrese un usuario y contraseña para continuar",
+                    Text("App de usuarios, consumiendo la API de REQRES",
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 16,
                           fontFamily: "Poppins",
                           height: 1.7,
                           color: Color.fromARGB(255, 5, 70, 109),
@@ -92,62 +94,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ],
                 ),
               ),
+
+              const Spacer(flex: 2),
+
               AnimatedBtn(
                 btnAnimationController: _btnAnimationController,
                 press: () {
                   _btnAnimationController.isActive = true;
                 },
-              )
+              ),
+
+              // footer
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 24),
+                child: Text("Ingrese un usuario y contraseña para continuar",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: "Poppins",
+                      height: 1.7,
+                      color: Color.fromARGB(255, 5, 70, 109),
+                    )),
+              ),
             ],
           ),
         ))
       ],
     ));
-  }
-}
-
-class AnimatedBtn extends StatelessWidget {
-  const AnimatedBtn({
-    super.key,
-    required RiveAnimationController btnAnimationController,
-    required this.press,
-  }) : _btnAnimationController = btnAnimationController;
-
-  final RiveAnimationController _btnAnimationController;
-  final VoidCallback press;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: press,
-      child: SizedBox(
-          height: 64,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              RiveAnimation.asset(
-                "assets/RiveAssets/button.riv",
-                controllers: [_btnAnimationController],
-              ),
-              const Positioned.fill(
-                top: 8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      CupertinoIcons.arrow_right_circle_fill,
-                      color: Color.fromARGB(255, 238, 79, 129),
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      "Iniciar Sesión",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          )),
-    );
   }
 }
