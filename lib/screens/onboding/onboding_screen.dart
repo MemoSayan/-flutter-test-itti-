@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 import 'components/animated_btn.dart';
+import 'components/custom_sign_in_dialog.dart';
 
 /*
  * @autor: Guillermo De la cruz  
@@ -19,6 +20,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  bool isSignInDialog = false;
   late RiveAnimationController _btnAnimationController;
 
   @override
@@ -38,7 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Positioned(
             // height: 100,
             width: MediaQuery.of(context).size.width * 1.7,
-            bottom: 250,
+            bottom: 200,
             left: 120,
             child: Image.asset("assets/Backgrounds/Spline.png")),
         Positioned.fill(
@@ -60,65 +62,82 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: const SizedBox(),
           ),
         ),
-        SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-          child: Column(
-            children: [
-              const Spacer(),
+        AnimatedPositioned(
+          top: isSignInDialog ? -60 : 0,
+          duration: const Duration(milliseconds: 200),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: SafeArea(
+              child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: Column(
+              children: [
+                const Spacer(),
 
-              //header
-              const SizedBox(
-                width: 400,
-                child: Column(
-                  children: [
-                    Text(
-                      "Bienvenido",
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.bold,
-                        height: 1.2,
-                        //color: Color.fromARGB(255, 241, 94, 2),
-                        color: Color.fromARGB(255, 5, 70, 109),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Text("App de usuarios, consumiendo la API de REQRES",
+                //header
+                const SizedBox(
+                  width: 300,
+                  child: Column(
+                    children: [
+                      Text(
+                        "Bienvenido",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 45,
                           fontFamily: "Poppins",
-                          height: 1.7,
+                          fontWeight: FontWeight.bold,
+                          height: 1.2,
+                          //color: Color.fromARGB(255, 241, 94, 2),
                           color: Color.fromARGB(255, 5, 70, 109),
-                        )),
-                  ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text("App de usuarios, consumiendo la API de REQRES",
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontFamily: "Poppins",
+                            height: 1.7,
+                            color: Color.fromARGB(255, 5, 70, 109),
+                          )),
+                    ],
+                  ),
                 ),
-              ),
 
-              const Spacer(flex: 2),
+                const Spacer(flex: 2),
 
-              AnimatedBtn(
-                btnAnimationController: _btnAnimationController,
-                press: () {
-                  _btnAnimationController.isActive = true;
-                },
-              ),
+                AnimatedBtn(
+                  btnAnimationController: _btnAnimationController,
+                  press: () {
+                    _btnAnimationController.isActive = true;
+                    Future.delayed(const Duration(milliseconds: 800), () {
+                      setState(() {
+                        isSignInDialog = true;
+                      });
+                      // Navigator.pushNamed(context, "/home");
+                    });
+                    customDialog(context, onClosed: (_) {
+                      setState(() {
+                        isSignInDialog = false;
+                      });
+                    });
+                  },
+                ),
 
-              // footer
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Text("Ingrese un usuario y contraseña para continuar",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: "Poppins",
-                      height: 1.7,
-                      color: Color.fromARGB(255, 5, 70, 109),
-                    )),
-              ),
-            ],
-          ),
-        ))
+                // footer
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: Text("",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Poppins",
+                        height: 1.7,
+                        color: Color.fromARGB(255, 5, 70, 109),
+                      )),
+                ),
+              ],
+            ),
+          )),
+        )
       ],
     ));
   }
