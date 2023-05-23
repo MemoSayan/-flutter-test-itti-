@@ -21,7 +21,7 @@ Future<Object?> customDialog(BuildContext context,
     },
     pageBuilder: (context, _, __) => Center(
       child: Container(
-        height: 720,
+        height: 740,
         margin: const EdgeInsets.symmetric(horizontal: 20),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         decoration: BoxDecoration(
@@ -30,25 +30,27 @@ Future<Object?> customDialog(BuildContext context,
         ),
         child: const Scaffold(
           backgroundColor: Colors.transparent,
-          body: Column(
-            children: [
-              Text(
-                "Inicio de Sesión",
-                style: TextStyle(fontSize: 37, fontFamily: "poppins"),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: Text("Hola de nuevo, ingresa tus datos.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: "Poppins",
-                      height: 1.7,
-                      color: Color.fromARGB(255, 5, 70, 109),
-                    )),
-              ),
-              SignInForm(),
-            ],
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  "Inicio de Sesión",
+                  style: TextStyle(fontSize: 37, fontFamily: "poppins"),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text("Hola de nuevo, ingresa tus datos.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Poppins",
+                        height: 1.7,
+                        color: Color.fromARGB(255, 5, 70, 109),
+                      )),
+                ),
+                SignInForm(),
+              ],
+            ),
           ),
         ),
       ),

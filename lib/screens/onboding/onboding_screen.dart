@@ -34,12 +34,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //resizeToAvoidBottomInset: false,
         body: Stack(
       // Agregamos la animacion de rive con la ayuda de la libreria rive
       children: [
         Positioned(
-            // height: 100,
-            width: MediaQuery.of(context).size.width * 1.7,
+            height: 100,
+            width: MediaQuery.of(context).size.width,
             bottom: 200,
             left: 120,
             child: Image.asset("assets/Backgrounds/Spline.png")),
@@ -77,32 +78,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 //header
                 const SizedBox(
                   width: 300,
-                  child: Column(
-                    children: [
-                      Text(
-                        "Bienvenido",
-                        style: TextStyle(
-                          fontSize: 45,
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          height: 1.2,
-                          //color: Color.fromARGB(255, 241, 94, 2),
-                          color: Color.fromARGB(255, 5, 70, 109),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Text("App de usuarios, consumiendo la API de REQRES",
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Bienvenido",
                           style: TextStyle(
-                            fontSize: 26,
+                            fontSize: 45,
                             fontFamily: "Poppins",
-                            height: 1.7,
+                            fontWeight: FontWeight.bold,
+                            height: 1.2,
+                            //color: Color.fromARGB(255, 241, 94, 2),
                             color: Color.fromARGB(255, 5, 70, 109),
-                          )),
-                    ],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Text("App de usuarios, consumiendo la API de REQRES",
+                            style: TextStyle(
+                              fontSize: 26,
+                              fontFamily: "Poppins",
+                              height: 1.7,
+                              color: Color.fromARGB(255, 5, 70, 109),
+                            )),
+                      ],
+                    ),
                   ),
                 ),
 
-                const Spacer(flex: 2),
+                const Spacer(flex: 1),
 
                 AnimatedBtn(
                   btnAnimationController: _btnAnimationController,
