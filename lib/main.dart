@@ -12,6 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //para quitar cinta de debug
+      debugShowCheckedModeBanner: false,
       title: 'App Flutter',
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xFFEEF1F8),

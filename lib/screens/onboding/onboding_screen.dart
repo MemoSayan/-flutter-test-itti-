@@ -25,6 +25,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
     _btnAnimationController = OneShotAnimation("active");
+    autoplay:
+    false;
     super.initState();
   }
 
@@ -90,45 +92,62 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  // se muestra animacion
+              AnimatedBtn(
+                btnAnimationController: _btnAnimationController,
+                press: () {
                   _btnAnimationController.isActive = true;
-                  //  Navigator.pushNamed(context, "/login");
                 },
-                child: SizedBox(
-                    height: 64,
-                    width: double.infinity,
-                    child: Stack(
-                      children: [
-                        RiveAnimation.asset(
-                          "assets/RiveAssets/button.riv",
-                          controllers: [_btnAnimationController],
-                        ),
-                        const Positioned.fill(
-                          top: 8,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                CupertinoIcons.arrow_right_circle_fill,
-                                color: Color.fromARGB(255, 238, 79, 129),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                "Iniciar Sesión",
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    )),
               )
             ],
           ),
         ))
       ],
     ));
+  }
+}
+
+class AnimatedBtn extends StatelessWidget {
+  const AnimatedBtn({
+    super.key,
+    required RiveAnimationController btnAnimationController,
+    required this.press,
+  }) : _btnAnimationController = btnAnimationController;
+
+  final RiveAnimationController _btnAnimationController;
+  final VoidCallback press;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: press,
+      child: SizedBox(
+          height: 64,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              RiveAnimation.asset(
+                "assets/RiveAssets/button.riv",
+                controllers: [_btnAnimationController],
+              ),
+              const Positioned.fill(
+                top: 8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      CupertinoIcons.arrow_right_circle_fill,
+                      color: Color.fromARGB(255, 238, 79, 129),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "Iniciar Sesión",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )),
+    );
   }
 }
