@@ -9,14 +9,12 @@ class UserLocked extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cliente Bloqueado'),
-        backgroundColor:
-            Color.fromARGB(255, 179, 147, 249), // Personaliza el color de fondo
+        backgroundColor: Color.fromARGB(255, 179, 147, 249),
         elevation: 2, // Añade una sombra sutíl
         titleTextStyle: const TextStyle(
-          color: Colors.white, // Personaliza el color del texto del título
-          fontSize: 20, // Personaliza el tamaño del texto del título
-          fontWeight:
-              FontWeight.bold, // Personaliza la fuente del texto del título
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
       ),
       body: Center(
@@ -33,7 +31,7 @@ class UserLocked extends StatelessWidget {
                     const Color.fromARGB(255, 179, 147, 249).withOpacity(0.3),
                 spreadRadius: 5,
                 blurRadius: 5,
-                offset: Offset(0, 3), // Controla la sombra del contenedor
+                offset: Offset(0, 3),
               ),
             ],
           ),
@@ -46,9 +44,8 @@ class UserLocked extends StatelessWidget {
                 width: 150,
                 height: 150,
                 placeholder: (context, url) =>
-                    const CircularProgressIndicator(), // Opcional: Agrega un indicador de carga mientras se carga la imagen
-                errorWidget: (context, url, error) => const Icon(Icons
-                    .error), // Opcional: Widget de error en caso de que la carga falle
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               const Text(
                 'Cliente Bloqueado',
@@ -59,7 +56,6 @@ class UserLocked extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              // Aquí puedes agregar más widgets para mostrar información o elementos visuales adicionales
             ],
           ),
         ),

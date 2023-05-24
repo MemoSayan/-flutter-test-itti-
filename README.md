@@ -1,16 +1,22 @@
-# app-flutter-itti
+#APP-USERS-LOGIN
 
-A new Flutter project.
+Breve descripción o introducción al proyecto.
 
-## Getting Started
+## Requisitos previos
 
-This project is a starting point for a Flutter application.
+- Flutter SDK: [Instrucciones de instalación](https://flutter.dev/docs/get-started/install)
+- android studio 
 
-A few resources to get you started if this is your first Flutter project:
+## Instalación
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clona el repositorio o descarga el código fuente.
+2. Abre una terminal y navega hasta el directorio del proyecto.
+3. Ejecuta el siguiente comando para obtener las dependencias necesarias:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   flutter pub get
+
+   # Uso
+   - Asegúrate de tener un emulador o un dispositivo físico configurado y conectado.
+   -Ejecuta el siguiente comando para iniciar la aplicación: flutter run
+
+   

@@ -88,7 +88,11 @@ class _EntryPointState extends State<EntryPoint> {
                       ),
                     ),
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(user['avatar']),
+                      //backgroundImage: NetworkImage(user['avatar']),
+                      child: FadeInImage(
+                          placeholder: const AssetImage(
+                              'assets/Backgrounds/loading_u.gif'),
+                          image: NetworkImage(user['avatar'])),
                     ),
                   ),
                   Divider(

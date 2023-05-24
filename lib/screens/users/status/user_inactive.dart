@@ -10,14 +10,12 @@ class UserInactive extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cliente Inactivo'),
-        backgroundColor:
-            Color.fromARGB(255, 2, 78, 92), // Personaliza el color de fondo
-        elevation: 2, // Añade una sombra sutíl
+        backgroundColor: Color.fromARGB(255, 2, 78, 92),
+        elevation: 2,
         titleTextStyle: const TextStyle(
-          color: Colors.white, // Personaliza el color del texto del título
-          fontSize: 20, // Personaliza el tamaño del texto del título
-          fontWeight:
-              FontWeight.bold, // Personaliza la fuente del texto del título
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold, //
         ),
       ),
       body: Center(
@@ -46,9 +44,8 @@ class UserInactive extends StatelessWidget {
                 width: 150,
                 height: 150,
                 placeholder: (context, url) =>
-                    const CircularProgressIndicator(), // Opcional: Agrega un indicador de carga mientras se carga la imagen
-                errorWidget: (context, url, error) => const Icon(Icons
-                    .error), // Opcional: Widget de error en caso de que la carga falle
+                    const CircularProgressIndicator(), // Agrega un indicador de carga mientras se carga la imagen
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               const Text(
                 'Cliente Inactivo',
@@ -59,7 +56,6 @@ class UserInactive extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              // Aquí puedes agregar más widgets para mostrar información o elementos visuales adicionales
             ],
           ),
         ),
