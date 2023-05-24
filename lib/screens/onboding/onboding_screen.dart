@@ -38,27 +38,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         body: Stack(
       // Agregamos la animacion de rive con la ayuda de la libreria rive
       children: [
-        Positioned(
-            height: 100,
-            width: MediaQuery.of(context).size.width,
-            bottom: 200,
-            left: 120,
-            child: Image.asset("assets/Backgrounds/Spline.png")),
-        Positioned.fill(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 20,
-              sigmaY: 20,
-            ),
-            child: const SizedBox(),
-          ),
-        ),
         const RiveAnimation.asset("assets/RiveAssets/shapes.riv"),
         Positioned.fill(
           child: BackdropFilter(
             filter: ImageFilter.blur(
-              sigmaX: 25,
-              sigmaY: 25,
+              sigmaX: 30,
+              sigmaY: 30,
             ),
             child: const SizedBox(),
           ),

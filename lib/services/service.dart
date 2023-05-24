@@ -15,4 +15,16 @@ class UserService {
       throw Exception('Error en la petición: ${response.statusCode}');
     }
   }
+
+//get user by id
+  static Future<Map<String, dynamic>> getUser(int userId) async {
+    final response =
+        await http.get(Uri.parse('https://reqres.in/api/users/$userId'));
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to get user');
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import '../../../services/service.dart';
+
 class UserActive extends StatelessWidget {
   const UserActive({super.key});
 
@@ -41,7 +43,7 @@ class UserActive extends StatelessWidget {
             children: [
               CachedNetworkImage(
                 imageUrl:
-                    'https://i.pinimg.com/originals/cb/9a/4b/cb9a4b44dfa9d22c0d34797d8c2c0b3b.gif',
+                    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/2048px-Facebook_Like_button.svg.png',
                 width: 200,
                 height: 200,
                 placeholder: (context, url) =>
@@ -58,6 +60,7 @@ class UserActive extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+
               // Aquí puedes agregar más widgets para mostrar información o elementos visuales adicionales
             ],
           ),
