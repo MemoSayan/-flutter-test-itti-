@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
+import 'dart:math';
 
+import '../services/check_user_status.dart';
 import '../services/service.dart';
 
 class EntryPoint extends StatefulWidget {
@@ -30,7 +30,7 @@ class _EntryPointState extends State<EntryPoint> {
         _users = users;
       });
     } catch (e) {
-      // Manejar el error de la petición
+      print('Error: $e');
     }
   }
 
@@ -42,9 +42,9 @@ class _EntryPointState extends State<EntryPoint> {
           "List ReqRes users",
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+              fontFamily: 'Poppins'),
         ),
         centerTitle: true,
         backgroundColor: Colors.pink,
@@ -54,8 +54,16 @@ class _EntryPointState extends State<EntryPoint> {
         itemBuilder: (context, index) {
           final user = _users[index];
           return ListTile(
-            title: Text(user['first_name']),
-            subtitle: Text(user['email']),
+            onTap: () {
+              checkConditions(context);
+            },
+            title: Text(user['first_name'] + ' ' + user['last_name']),
+            subtitle: Text(user['email'],
+                style: const TextStyle(
+                  color: Color.fromARGB(221, 97, 25, 241),
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                )),
             leading: CircleAvatar(
               backgroundImage: NetworkImage(user['avatar']),
             ),
