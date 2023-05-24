@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_itti/screens/entry_point.dart';
 import 'package:rive/rive.dart';
 
 class SignInForm extends StatefulWidget {
@@ -40,6 +41,16 @@ class _SignInFormState extends State<SignInForm> {
           setState(() {
             isshowLoading = false;
           });
+          Future.delayed(
+            const Duration(seconds: 1),
+            () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EntryPoint(),
+                  ));
+            },
+          );
 
           //al cerrar el dialogo se activa la animacion de confetti
         });
