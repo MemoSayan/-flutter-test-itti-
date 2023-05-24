@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class UserService {
+//get list of users
   Future<List<dynamic>> getUsers() async {
     final response = await http.get(Uri.parse('https://reqres.in/api/users'));
 

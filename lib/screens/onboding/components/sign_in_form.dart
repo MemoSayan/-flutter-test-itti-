@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_itti/screens/entry_point.dart';
 import 'package:rive/rive.dart';
@@ -85,9 +86,17 @@ class _SignInFormState extends State<SignInForm> {
                             if (value!.isEmpty) {
                               return "El campo usuario no puede estar vacio";
                             }
+
+                            if (value.contains(RegExp(r'\d'))) {
+                              return "El campo usuario no puede contener caracteres numéricos";
+                            }
                             return null;
                           },
                           onSaved: (user) {},
+                          inputFormatters: [
+                            FilteringTextInputFormatter.deny(
+                                RegExp(r'\d')), // Denegar caracteres numéricos
+                          ],
                           decoration: InputDecoration(
                             prefixIcon: Padding(
                               padding:
@@ -108,8 +117,12 @@ class _SignInFormState extends State<SignInForm> {
                         child: TextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "La contraseña no puede estar vacia";
+                              return "El campo contraseña no puede estar vacio";
                             }
+                            if (value.length < 5 || value.length > 5) {
+                              return "La contraseña debe tener 5 caracteres";
+                            }
+
                             return null;
                           },
                           onSaved: (password) {},
